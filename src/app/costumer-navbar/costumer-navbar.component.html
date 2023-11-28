@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid d-flex flex-column">
+        <a class="navbar-brand title" role="button" RouterLink="/Course">
+            <i class="bi bi-book-half fs-3"></i>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav" id="menu-links">
+                @for(feature of features; track feature){
+                    <li class="nav-item">
+                        <a [class]="linkClasses[$index]" role="button" aria-current="page" routerLink="{{feature[1]}}" (click)="navigationSelected($index)">{{ feature[0] }}</a>
+                    </li>
+                }
+                <li *ngIf="checkRole()" class="nav-item">
+                    <a [class]="administratorLinkClasses" role="button" routerLink="./Administrator" (click)="navigationSelected(-1)">Administration</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
