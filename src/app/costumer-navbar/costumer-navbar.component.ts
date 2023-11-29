@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { IUser } from '../Contracts/IUser';
+import { UserAPIService } from '../Services/UserAPI.service';
+import { Observable, Observer, map } from 'rxjs';
 
 @Component({
   selector: 'app-costumer-navbar',
@@ -12,6 +14,8 @@ import { IUser } from '../Contracts/IUser';
 })
 export class CostumerNavbarComponent {
   private userInfo: IUser;
+  isLabAdmin$ : Observable<boolean>; 
+
 
   private clearAllFeaturesLink() {
     for (let i = 0; i < this.linkClasses.length; i++) {
@@ -35,12 +39,10 @@ export class CostumerNavbarComponent {
     ["Reserv", "./"],
   ];
 
-  constructor() {
+  constructor(private userAPIService: UserAPIService) {
     this.userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
-  }
+    this.isLabAdmin$ = this.userAPIService.isLabAdmin(this.userInfo.email);
 
-  checkRole() {
-    return this.userInfo.role.toLowerCase() === "labadmin";
   }
 
   navigationSelected(linkSelected: number) {
@@ -48,7 +50,6 @@ export class CostumerNavbarComponent {
 
     if (linkSelected === -1) this.administratorLinkClasses += " active";
     else this.linkClasses[linkSelected] += " active";
-
   }
 
 }

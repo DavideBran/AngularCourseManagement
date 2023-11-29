@@ -1,9 +1,8 @@
-import { Component, NgModule } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserAPIService } from '../Services/UserAPI.service';
 import { Subscription } from 'rxjs';
-import { compileNgModule } from '@angular/compiler';
 import { Router } from '@angular/router';
 
 @Component({

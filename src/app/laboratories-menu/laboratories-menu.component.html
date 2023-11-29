@@ -1,0 +1,16 @@
+<a class="btn btn-primary m-4" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"> Laboratories </a>
+
+<div class="offcanvas offcanvas-start bg-light" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title m-auto" id="offcanvasExampleLabel">Select The Laboraotry</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body pt-0 flex-column d-flex align-items-center mt-5" #laboratoriesDiv>
+        <button 
+        *ngFor="let laboraotry of laboratories; index as i" 
+        [ngClass]="i === 0 ? 'p-2 w-50 btn btn-primary rounded-pill shadow mb-3': 'p-2 w-50 btn btn-light rounded-pill shadow mb-3'"
+        [id] = "laboraotry.labID"
+        (click) = "activate(laboratoriesDiv, lab)"
+        #lab>Laboratory {{i+1}}</button>
+  </div>
+</div>  
